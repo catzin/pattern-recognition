@@ -2,7 +2,6 @@ clc % limpia pantalla
 clear all % limpia todo
 close all %cierra todo
 
-
 r = 1;
 opcion = 0;
 

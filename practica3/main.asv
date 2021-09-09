@@ -1,0 +1,29 @@
+clc 
+clear all
+
+
+c1 = [0 1 1 1; 0 0 1 0];
+c2 = [0 1 0 0;0 1 1 1];
+
+distancias = [];
+matClases = [c1 c2];
+numeroRep = 4;
+[inicio , fin ] = generaInicioFin(numeroRep,matClases);
+mediasMat = calcularMedias(matClases,inicio , fin );
+varianzasMat = [];
+
+
+for i=1:length(inicio)
+    valor = calculaVarianza(numeroRep,matClases(1:2,inicio(i):fin(i)),mediasMat(1:2,i:i));
+    varianzasMat = [varianzasMat valor];
+end
+
+%calculamos las distancias
+for i=1:length(inicio)
+    dist = matClases(1:2,(inicio):(fin)) * inv(varianzasMat(1:2,))
+end
+
+
+
+
+
