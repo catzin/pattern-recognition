@@ -28,7 +28,12 @@ end
 %generamos cada matriz (correspondiente a cada clase ck) y 
 %la agregamos a una matriz contenedora de todas las clases ck1 .... ckn
 for i = 1:nclases
-    x = (randn(2,nrep)+centroides(i)) *  disper(i);
+    if(disper(i) ~= 0)
+        x = (randn(2,nrep)+centroides(i)) *  disper(i);
+    else
+        x = (randn(2,nrep)+centroides(i)) *  1;
+    end
+    
     matclases = [matclases x];
     x = [];
     
