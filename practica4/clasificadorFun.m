@@ -1,6 +1,5 @@
 function clasificadorFun(matclases,nrep,nclases,x,y,inicio,finales)
 
-colors = ['b','g','r','c','m','y','k','w'];
 medias = [];
 distancias = [];
 
@@ -23,27 +22,6 @@ end
  end
 
 
-figure(4)
-color = 1;
-
-for i=1:length(inicio)
-    
-    ck = matclases(1:2,inicio(i):finales(i));
-    plot(ck(1,:),ck(2,:),'ro','MarkerSize',10,'MarkerFaceColor',colors(color));
-   
-    color = color+1;
-    ck = [];
-    
-    grid on;
-    hold on;
-   
-end
-
- hold on;
- 
- plot(vector(1,:),vector(2,:),'ro','MarkerSize',15,'MarkerFaceColor','k');
- title('Clasificador 1','FontSize',24);
- legend();
 
  dist_total= distancias;
  minimo = min(min(dist_total));

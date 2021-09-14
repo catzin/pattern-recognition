@@ -1,6 +1,5 @@
 function vecinosFunc(matClases,nrep,nclases,x,y,inicio,fin)
 
-colors = ['b','g','r','c','m','y','k','w'];
 %pertenece a clase 2 con euclidiano
 % c1 = [0 0 1 0 2; 0 1 1 1 1];
 % c2 = [5 5 4 6 6; 5 6 5 5 4];
@@ -64,30 +63,10 @@ for i=1:f
    
 end
 
-%ploteo
-figure(1)
-color = 1;
-for i=1:length(inicio)
-    
-    ck = matClases(1:2,inicio(i):fin(i));
-    plot(ck(1,:),ck(2,:),'ro','MarkerSize',10,'MarkerFaceColor',colors(color));
- 
-    
-    color = color+1;
-    ck = [];
-    grid on;
-    hold on;
-   
-end
-
- hold on;
- plot(vectorplot(1,:),vectorplot(2,:),'ro','MarkerSize',15,'MarkerFaceColor','k');
- title('Clasificado de Vecinos');
- legend();
 
 maxNum = max(cantidades);
 valor = find(cantidades == maxNum);
 
-fprintf("El vector [%d , %d] pertenece a la clase %d\n",x,y,valor);
+fprintf("(Clasificador por vecinos : )El vector [%d , %d] pertenece a la clase %d \n",x,y,valor);
 end
 

@@ -1,6 +1,5 @@
 function bayesFun(matclases,nrep,nclases,x,y,inicio,finales)
 
-colors = ['b','g','r','c','m','y','k','w'];
 
 vector = [x y];
 vectorplot = [x;y];
@@ -20,7 +19,7 @@ for i=1:length(mediasmat)
     %saco su transpuesta de una vez
     transResta = transpose(resta);
     %calculamos la varianza para ck recibe ck,#representantes,media ck
-    varianza = calculaVarianza(matclases(1:2,inicio(i):finales(i)),nrep,mediasmat(1:2,i));
+    varianza = calculaVarianza(nrep,matclases(1:2,inicio(i):finales(i)),mediasmat(1:2,i));
     %despues utilizo un aux para agarrar la transpuesta de la actual varian
     %za de ck
     invvarianzack = inv(varianza);
@@ -51,28 +50,6 @@ for i=1:length(mediasmat)
         aux  = partA(i) * partB(i);
         subFinal = [subFinal aux];
 end
-
-%ploteo
-figure(1)
-color = 1;
-for i=1:length(inicio)
-    
-    ck = matclases(1:2,inicio(i):finales(i));
-    plot(ck(1,:),ck(2,:),'ro','MarkerSize',10,'MarkerFaceColor',colors(color));
- 
-    
-    color = color+1;
-    ck = [];
-    grid on;
-    hold on;
-   
-end
-
- hold on;
- plot(vectorplot(1,:),vectorplot(2,:),'ro','MarkerSize',15,'MarkerFaceColor','k');
- title('Clasificado de Bayes');
- legend();
- 
 
 %calcular las ps
 ps =[ ];

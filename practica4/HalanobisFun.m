@@ -10,7 +10,7 @@ function HalanobisFun(matClases,nrep,nclases,x,y,inicio,fin)
 %como e = 3 y filas de algunamatriz(1:3)
 %como vamos a trabajar con 2D, no mover nada, ya funciona
 
-colors = ['b','g','r','c','m','y','k','w'];
+
 
 %calculamos las medias de cada Ck de forma 2 x 1 (dos filas una col)
 mediasMat = calcularMedias(matClases,inicio,fin);
@@ -58,28 +58,8 @@ for i=1:length(inicio)
 
 end
 
-color = 1;
 
-for i=1:length(inicio)
-    
-    ck = matClases(1:2,inicio(i):fin(i));
-    plot(ck(1,:),ck(2,:),'ro','MarkerSize',10,'MarkerFaceColor',colors(color));
-   
-    color = color+1;
-   
-    grid on;
-    hold on;
-  
-   
-end
-
- hold on;
- plot(vectorPlot(1,:),vectorPlot(2,:),'ro','MarkerSize',15,'MarkerFaceColor','k');
- title('Mahalanobis','FontSize',24);
- legend();
 %  2 x 4  *  4 x2   = 2 x 2
-
-
 minimo = min(min(distancias));
 valor = find(minimo == distancias);
 fprintf("( Mahalanobis ): El vector  [%d , %d] pertenece a la clase %d\n",x,y,valor);
