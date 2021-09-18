@@ -1,24 +1,11 @@
-clc
-clear all
-
-%Perceptrón con funcion AND
-% @Autor: Ehecatzin Vallejo
-%Email : catzin9617@gmail.com
-
-%aqui estan las combinaciones de nuestra tabla de verdad
-funcion = [0 0; 0 1; 1 0; 1 1];
+function [funcionFinal,cont] = clasificadorOR(funcion,Wn,r,opcion)
 %inicialmente se propone wn
 Wn = [1; 1; 1];
 %se propone R
 r = 1;
+%x3 se propone en 1
 x3 = 1;
-
-% Ejemplo de Funcion OR visto en clase
-% [funcionFinal,iteraciones] = clasificadorOR(funcion,Wn,r);
-% 
-% disp(funcionFinal);
-% fprintf("Funcion Final : %dx1 %dx2 %d\n",funcionFinal);
-
+%empezamos con 1 iteracion
 iteraciones = 1;
 cont = 0;
 
@@ -36,52 +23,37 @@ while(iteraciones)
         factEntrada = [combinacion x3];
         %aqui esta la operacion factentrada * Wn actual
         
-        %ai es diferente de [ 1 1] entonces es la clase 1
-        if(combinacion == [1 1])
+        %si es  [0 0] entonces es la clase 1
+        if(combinacion == [0 0])
             factCheck = factEntrada * Wn;
             
             %si entras aqui entonces calcula una nueva Wn
             if(factCheck >= 0)
                 iteraciones = 1;
                 antWn = Wn;
-                
-                factorEntrada = factEntrada';
-                Wn = antWn - (1 * factorEntrada);
+                Wn = nuevaWn(antWn,r,factEntrada,combinacion);
                 
                 
             end
         else
-            %aqui es [ 1 1 ] entonces es la clase 2 
+            %aqui es clase 2 entonces
             factCheck = factEntrada * Wn;
             
             if(factCheck <= 0)
                 
                 iteraciones = 1;
                 antWn = Wn;
-                factorEntrada = factEntrada';
-                Wn = antWn + (1 * factorEntrada);
-            
+                Wn = nuevaWn(antWn,r,factEntrada,combinacion);
+                
             end
             
         end
         
     end
-   
+    
     cont = cont+1;
 end
-
 funcionFinal = Wn;
 
-figure(1)
-b = 0;
-x = -5:0.01:5;
-y = -3*x -2*x + 4;
-z = zeros(size(x));
-plot(x,y,'r');
-hold on
-plot(x,z,'b');
-plot(z,y,'b');
-hold off
-
-
+end
 
