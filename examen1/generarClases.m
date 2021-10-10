@@ -7,8 +7,8 @@ function [matclases,nrep,nclases] = generarClases()
 %retona : matclases(matriz contenedora) , numero de representantes por
 %clase , y numero de clases.
 
-centroides = [];
-disper = [];
+% centroides = [];
+% disper = [];
 matclases = [];
 
 nclases = input("¿Cuantas clases quieres?\n");
@@ -21,11 +21,15 @@ fprintf("Ingresa el centroide y dispersion para cada clase\n");
 
 clc;
 %agregamos centroides y dispersion correspondientes de las n clases
-for i=1:nrep 
-    centroides(i) = input("centroide clase "+i+": \n");
-    disper(i) = input("dispersion clase "+i+": \n");
-    
-end
+% for i=1:nrep 
+%     centroides(i) = input("centroide clase "+i+": \n");
+%     disper(i) = input("dispersion clase "+i+": \n");
+%     
+% end
+
+
+centroides = [0,3,2,1,5,4,6,5,6,7];
+disper = [0,8,2,1,3,8,3,4,4,5];
 
 
 

@@ -5,7 +5,6 @@ clear all
 % @Autor: Ehecatzin Vallejo
 %Email : catzin9617@gmail.com
 
-
 opcion = input("Elige una opcion:\n\n1.Perceptrón AND\n2.Cubo\n");
 
 switch opcion

@@ -1,18 +1,7 @@
-clc % limpia pantalla
-clear all % limpia todo
-close all %cierra todo
+clear all
 format shortEng
 
 colors = ['b','g','r','c','m','y','k','w'];
-%caso de clase
-% nrep = 5;
-% nclases = 3;
-% c1 = [0 0 1 0 2;0 1 1 1 1];
-% c2 = [5 5 4 6 6; 5 6 5 5 9];
-% c3 = [9 10 11 10 9; 10 11 9 12 12];
-% vector = [8 6];
-% vectorplot = [8;6];
-% matclases = [c1 c2 c3];
 
 [matclases,nrep,nclases] = generarClases();
 [inicio,finales] = generaInicioFin(nrep,matclases);
@@ -20,9 +9,7 @@ colors = ['b','g','r','c','m','y','k','w'];
 [x,y] = leerVector();
 vector = [x y];
 vectorplot = [x;y];
-respuesta = 1;
 
-while(respuesta ~=3)
    
 [mediasmat] = calcularMedias(matclases,inicio,finales);
 varianzas = [];
@@ -51,10 +38,10 @@ for i=1:length(mediasmat)
 end
 
 %parte B de cada Ck
-
 defaultb = (1/ (2 * pi)); 
 init = 1;
 endd = 2;
+
 %varianzas son submatrices de 2x2 para cada Ck
 for i=1:length(mediasmat)
     partB(i) = defaultb * det(varianzas(1:2,init:endd) ^ -0.5);
@@ -97,7 +84,7 @@ ps =[ ];
 %sumatoria de probabilidades
 sumaProb = 0;
 for i=1:length(subFinal)
-    sumaProb = sumaProb + subFinal(1);
+    sumaProb = sumaProb + subFinal(i);
 end
 
 for i=1:length(subFinal)
@@ -108,30 +95,9 @@ prob_total = ps;
 maximo = max(max(prob_total));
 valor = find(prob_total == maximo);
 
-fprintf("El vector desconocido pertenece a la clase %d",valor);
-
- respuesta = input("ELige una nueva opcion\n 1.Otro Vector\n 2.Comparar con Clasificador 1\n 3.Salir\n");
-
- if(respuesta == 1)
-     clc;
-     close();
-     [x,y] = leerVector();
-     vector = [x y];
-     vectorplot = [x;y];
-
- else
-     
-  
-   
-  
-    
- end
- 
-
- end
- 
- 
-
+fprintf("El vector desconocido pertenece a la clase %d\n",valor);
+fprintf("varianza : \n");
+disp(varianza);
 
 
 

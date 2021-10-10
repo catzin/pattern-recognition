@@ -1,0 +1,20 @@
+Distancia minima
+Resustitucion	 Cross-Over	 Hold In One	
+- - - - - - - - - - - - - - - - - - - - -
+8.760000e+01	 4.280000e+01	 8.540000e+01	
+- - - - - - - - - - - - - - - - - - - - -
+Bayes
+Resustitucion	 Cross-Over	 Hold In One	
+- - - - - - - - - - - - - - - - - - - - -
+8.520000e+01	 44	 8.780000e+01	
+- - - - - - - - - - - - - - - - - - - - -
+Mahalanobis
+Resustitucion	 Cross-Over	 Hold In One	
+- - - - - - - - - - - - - - - - - - - - -
+89	 4.480000e+01	 8.680000e+01	
+- - - - - - - - - - - - - - - - - - - - -
+KNN 
+Resustitucion	 Cross-Over	 Hold In One	
+- - - - - - - - - - - - - - - - - - - - -
+9.020000e+01	 4.580000e+01	 8.580000e+01	
+- - - - - - - - - - - - - - - - - - - - -

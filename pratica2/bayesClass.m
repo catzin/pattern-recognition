@@ -110,8 +110,8 @@ prob_total = ps;
 maximo = max(max(prob_total));
 valor = find(prob_total == maximo);
 
-fprintf("(Bayes: ) El vector desconocido pertenece a la clase %d\n",valor);
- respuesta = input("ELige una nueva opcion\n 1.Otro Vector\n 2.Comparar con Clasificador 1 \n 3.Salir\n");
+fprintf("(Bayes: ) El vector desconocido pertenece a la clase %d \n",valor);
+respuesta = input("ELige una nueva opcion\n 1.Otro Vector\n");
 
  if(respuesta == 1)
      clc;
@@ -122,21 +122,11 @@ fprintf("(Bayes: ) El vector desconocido pertenece a la clase %d\n",valor);
 
  else
      
-     if(respuesta == 2)
-         clc;
-         close();
-         %funcion individual de clasificador1
-         clasificadorFun(matclases,nrep,nclases,x,y,inicio,finales);
-     else
-         %salir
-         close();
-         break;
-      
-     end
+    
+     
      
  end
  
  end
  
 end
-

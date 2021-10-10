@@ -1,5 +1,63 @@
 clc 
 clear all
+
+
+
+%parte de la imagen
+
+
+h = imread("mar.jpeg");
+[m,n] = size(h);
+
+% figure(1)
+% imshow(h);
+% 
+figure(2)
+dato = imref2d(size(h));
+imshow(h,dato);
+
+
+% figure(3)
+% impixel(h);
+
+c1X = randi([100,910],2,200);
+c1Y = randi([0,290],2,200);
+
+c2X = randi([90,910],2,200);
+c2Y = randi([400,650],2,200);
+
+
+c3X = randi([300,910],2,200);
+c3Y = randi([300,350],2,200);
+
+%graficamos sobre nuestro plano
+Z1 = impixel(h,c1X(1,:),c1Y(2,:));
+Z2 = impixel(h,c2X(1,:),c2Y(2,:));
+Z3 = impixel(h,c3X(1,:),c3Y(2,:));
+
+
+
+punto = [px;py];
+
+p1 = impixel(h,punto(1,:),punto(2,:));
+grid on
+hold on
+
+plot(c1X(1,:),c1Y(2,:),'ob','Markersize',10);
+plot(c2X(1,:),c2Y(2,:),'or','MarkerSize',10);
+plot(c3X(1,:),c3Y(2,:),'og','MarkerSize',10);
+plot(punto(1,:),punto(2,:),'oy','MarkerSize',10,'MarkerFaceColor','y');
+
+
+%calculo de las medias
+
+media1 = mean(Z1,'omitnan');
+media2 = mean(Z2,'omitnan');
+media3 = mean(Z3,'omitnan');
+
+
+dist1 = norm(media1 - p1)
+
 % Si se qiere usar el ejemplo de clase
 % c1 = [0 1 1 1; 0 0 1 0;0 0 0 1];
 % c2 = [0 1 0 0;0 1 1 1; 1 1 1 0];
@@ -12,10 +70,15 @@ clear all
 colors = ['b','g','r','c','m','y','k','w'];
 
 %se generan las N clases y se meten a una matriz contenedora
+matClases = []
 [matClases,nrep,nclases] = generarClases();
 %calculamos donde inicia y termina cada matriz Ck
 [inicio,fin] = generaInicioFin(nrep,matClases);
 %calculamos las medias de cada Ck de forma 2 x 1 (dos filas una col)
+
+
+
+
 mediasMat = calcularMedias(matClases,inicio,fin);
 %matriz contenedora de varianzas de tamaño 2x2(matrices)
 varianzasMat = [];
@@ -24,7 +87,7 @@ varianzasMat = [];
 distancias = [];
 
 %funcion que lee el vector
-[x,y] = leerVector();
+% [x,y] = leerVector();
 vectorPlot = [x;y];
 
 %las varianzas quedan como submatrices de 2x2 y se concatenan a la matriz

@@ -1,29 +1,10 @@
-clc % limpia pantalla
-clear all % limpia todo
-close all %cierra todo
-format shortEng
+function [valor] = bayesFun(matclases,nrep,nclases,x,y,inicio,finales)
 
-colors = ['b','g','r','c','m','y','k','w'];
-%caso de clase
-% nrep = 5;
-% nclases = 3;
-% c1 = [0 0 1 0 2;0 1 1 1 1];
-% c2 = [5 5 4 6 6; 5 6 5 5 9];
-% c3 = [9 10 11 10 9; 10 11 9 12 12];
-% vector = [8 6];
-% vectorplot = [8;6];
-% matclases = [c1 c2 c3];
 
-[matclases,nrep,nclases] = generarClases();
-[inicio,finales] = generaInicioFin(nrep,matclases);
-
-[x,y] = leerVector();
 vector = [x y];
 vectorplot = [x;y];
 respuesta = 1;
 
-while(respuesta ~=3)
-   
 [mediasmat] = calcularMedias(matclases,inicio,finales);
 varianzas = [];
 partA = [];
@@ -38,7 +19,7 @@ for i=1:length(mediasmat)
     %saco su transpuesta de una vez
     transResta = transpose(resta);
     %calculamos la varianza para ck recibe ck,#representantes,media ck
-    varianza = calculaVarianza(matclases(1:2,inicio(i):finales(i)),nrep,mediasmat(1:2,i));
+    varianza = calculaVarianza(nrep,matclases(1:2,inicio(i):finales(i)),mediasmat(1:2,i));
     %despues utilizo un aux para agarrar la transpuesta de la actual varian
     %za de ck
     invvarianzack = inv(varianza);
@@ -70,28 +51,6 @@ for i=1:length(mediasmat)
         subFinal = [subFinal aux];
 end
 
-%ploteo
-figure(1)
-color = 1;
-for i=1:length(inicio)
-    
-    ck = matclases(1:2,inicio(i):finales(i));
-    plot(ck(1,:),ck(2,:),'ro','MarkerSize',10,'MarkerFaceColor',colors(color));
- 
-    
-    color = color+1;
-    ck = [];
-    grid on;
-    hold on;
-   
-end
-
- hold on;
- plot(vectorplot(1,:),vectorplot(2,:),'ro','MarkerSize',15,'MarkerFaceColor','k');
- title('Clasificado de Bayes');
- legend();
- 
-
 %calcular las ps
 ps =[ ];
 %sumatoria de probabilidades
@@ -108,29 +67,14 @@ prob_total = ps;
 maximo = max(max(prob_total));
 valor = find(prob_total == maximo);
 
-fprintf("El vector desconocido pertenece a la clase %d",valor);
-
- respuesta = input("ELige una nueva opcion\n 1.Otro Vector\n 2.Comparar con Clasificador 1\n 3.Salir\n");
-
- if(respuesta == 1)
-     clc;
-     close();
-     [x,y] = leerVector();
-     vector = [x y];
-     vectorplot = [x;y];
-
- else
-     
-  
-   
-  
-    
- end
- 
+%fprintf("(Clasificador de Bayes) : El vector [%d , %d ] pertenece a la clase %d\n",x,y,valor);
 
  end
  
  
+
+
+
 
 
 
