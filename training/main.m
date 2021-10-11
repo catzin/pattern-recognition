@@ -38,7 +38,7 @@ for i=1:4
     switch i
          
     case 1
-        [matsConfEndDistMinima,porcentaje] = pruebasDistMinima(matclases,nrep,nclases,inicio,finales,fileMatsCvEuclidean,porcentajesFinales);
+        [matsConfEndDistMinima] = pruebasDistMinima(matclases,nrep,nclases,inicio,finales,fileMatsCvEuclidean,porcentajesFinales);
         fprintf("Matrices Distancia Minima \n");
         splitConfusionMats(matsConfEndDistMinima,nclases);
         fprintf("- - - - - - - - - - - - - - \n");

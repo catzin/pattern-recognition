@@ -135,6 +135,7 @@ fprintf(fileFinales,"Mahalanobis\n");
 fprintf(fileFinales,"Resustitucion\t Cross-Over\t Hold In One\t\n");
 fprintf(fileFinales,"- - - - - - - - - - - - - - - - - - - - -\n");
 fprintf(fileFinales,'%i\t %i\t %i\t\n',porcentajes(1),porcentajes(2),porcentajes(3));
+fprintf(fileFinales,'Mejor porcentaje : %i \t\n',max(porcentajes));
 fprintf(fileFinales,"- - - - - - - - - - - - - - - - - - - - -\n");
 
 graficador(principalRes,principalCross,principalHO,nclases,"Mahalanobis",4);
