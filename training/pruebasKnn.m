@@ -1,8 +1,9 @@
 function [matsConfEndKnn] = pruebasKnn(matclases,nrep,nclases,inicio,finales,fileMats,k,fileFinales)
 
-matConfusionR = zeros(5,5);
-matConfusionCV = zeros(5,5);
-matConfusionHO = zeros(5,5);
+matConfusionR = zeros(nclases,nclases);
+matConfusionCV = zeros(nclases,nclases);
+matConfusionHO = zeros(nclases,nclases);
+
 
 for i = 1: nclases
     %fprintf("Probando puntos en clase %d\n",i);
@@ -37,11 +38,18 @@ end
 
 nuevoRep = nrep/2;
 
+%args dinamicos para imprimir matriz en txt
+fmt = '';
+for i=1:5
+    fmt = strcat(fmt,'  %i  ');
+end
+fmt = strcat(fmt,'\n');
+
 kn = 1;
 while(kn <= 20)
     
     %vacear matriz
-    matConfusionCV = zeros(5,5);
+    matConfusionCV = zeros(nclases,nclases);
     
     fprintf(fileMats,"iteracion grande : %d\n",kn);
     
@@ -68,7 +76,7 @@ while(kn <= 20)
             matConfusionCV(i,valor) = matConfusionCV(i,valor)+1;
             %disp(matConfusionCV);
             fprintf(fileMats,"- - - - - - - - - - - - - - - - - \n");
-            fprintf(fileMats,'%i %i %i %i %i\n',matConfusionCV.');
+            fprintf(fileMats,fmt,matConfusionCV.');
             fprintf(fileMats,"- - - - - - - - - - - - - - - - - \n");
             
         end
@@ -105,11 +113,11 @@ end
 %end Hold in one
 matsConfEndKnn = [matConfusionR matConfusionCV matConfusionHO];
 
-principalRes = zeros(5);
-principalCross = zeros(5);
-principalHO = zeros(5);
+principalRes = zeros(nclases);
+principalCross = zeros(nclases);
+principalHO = zeros(nclases);
 
-for i=1:5 
+for i=1:nclases 
     principalRes(i) = matConfusionR(i,i);
     principalCross(i) = matConfusionCV(i,i);
     principalHO(i) = matConfusionHO(i,i);

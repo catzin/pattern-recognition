@@ -34,28 +34,28 @@ for i=1:length(inicio)
 end
 legend();
 
-for i=1:5
+for i=1:4
     switch i
          
     case 1
         [matsConfEndDistMinima,porcentaje] = pruebasDistMinima(matclases,nrep,nclases,inicio,finales,fileMatsCvEuclidean,porcentajesFinales);
         fprintf("Matrices Distancia Minima \n");
-        splitConfusionMats(matsConfEndDistMinima);
+        splitConfusionMats(matsConfEndDistMinima,nclases);
         fprintf("- - - - - - - - - - - - - - \n");
     case 2
         fprintf("Matrices Bayes \n");
         matsConfEndBayes = pruebasBayes(matclases,nrep,nclases,inicio,finales,fileMatsCvBayes,porcentajesFinales);
-        splitConfusionMats(matsConfEndBayes);
+        splitConfusionMats(matsConfEndBayes,nclases);
         fprintf("- - - - - - - - - - - - - -\n");
     case 3
         fprintf("Matrices Mahalanobis \n");
         matsConfEndHalanobis = pruebasHalanobis(matclases,nrep,nclases,inicio,finales,fileMatsCvHalanobis,porcentajesFinales); 
-        splitConfusionMats(matsConfEndHalanobis);
+        splitConfusionMats(matsConfEndHalanobis,nclases);
         fprintf("- - - - - - - - - - - - - - \n");
     case 4
         fprintf("Matrices Knn \n");
         matsConfEndKnn = pruebasKnn(matclases,nrep,nclases,inicio,finales,fileMatsCvKnn,k,porcentajesFinales);
-        splitConfusionMats(matsConfEndKnn);
+        splitConfusionMats(matsConfEndKnn,nclases);
         fprintf("- - - - - - - - - - - - - - \n");
                
     end

@@ -1,12 +1,24 @@
-function splitConfusionMats(containerMatsConfusion)
-fprintf("Matriz de confusion: Resustitución\n");
-disp(containerMatsConfusion(:,1:5));
-fprintf("\n");
-fprintf("Matriz de confusion: Cross Validation\n");
-disp(containerMatsConfusion(:,6:10));
-fprintf("\n");
-fprintf("Matriz de confusion: Hold in one\n");
-disp(containerMatsConfusion(:,11:15));
+function splitConfusionMats(containerMatsConfusion,nrep)
+
+[inicio,finales] = generaInicioFin(nrep,containerMatsConfusion);
+
+for i=1:length(inicio)
+    switch i 
+        case 1
+            disp("Resustitucion");
+            disp(containerMatsConfusion(:,inicio(i):finales(i)));
+        case 2
+            disp("Cross-Over");
+            disp(containerMatsConfusion(:,inicio(i):finales(i)));
+            
+        case 3
+            disp("Hold in one");
+            disp(containerMatsConfusion(:,inicio(i):finales(i)));
+            
+    end
+    
+    
+end
 
 end
 

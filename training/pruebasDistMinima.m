@@ -2,9 +2,9 @@
 function [matsConfEndDistMinima,porcentajes] = pruebasDistMinima(matclases,nrep,nclases,inicio,finales,fileMats,fileFinales)
 format short
 
-matConfusionR = zeros(5,5);
-matConfusionCV = zeros(5,5);
-matConfusionHO = zeros(5,5);
+matConfusionR = zeros(nclases,nclases);
+matConfusionCV = zeros(nclases,nclases);
+matConfusionHO = zeros(nclases,nclases);
 
 %resustitucion
 for i = 1: nclases
@@ -36,12 +36,18 @@ end
 %agarra la mitad de los 100 puntos --> 50
 
 nuevoRep = nrep/2;
+%args dinamicos para imprimir matriz en txt
+fmt = '';
+for i=1:5
+    fmt = strcat(fmt,'  %i  ');
+end
+fmt = strcat(fmt,'\n');
 
 kn = 1;
 while(kn <= 20)
     
     %vacear matriz
-    matConfusionCV = zeros(5,5);
+    matConfusionCV = zeros(nclases,nclases);
     
     fprintf(fileMats,"iteracion grande : %d\n",kn);
     
@@ -57,7 +63,7 @@ while(kn <= 20)
         %puntos aleatorios dentro de ese rango (inicio , fin) de Ck
         
         puntos = randi([initCk,endCk],1,nrep/2);
-        fprintf(fileMats,"Puntos a probar para la clase %d\n",i);
+        %fprintf(fileMats,"Puntos a probar para la clase %d\n",i);
     
         %opcion original
         
@@ -66,14 +72,14 @@ while(kn <= 20)
         for j=1:nuevoRep
             %punto a analizar
             punto = matclases(:,puntos(j):puntos(j));
-            fprintf(fileMats,"Estoy probando el punto %d en la clase :%d\n",j,i);
+            %fprintf(fileMats,"Estoy probando el punto %d en la clase :%d\n",j,i);
             %halanobis
             valor = clasificadorFun(matclases,nrep,nclases,punto(1),punto(2),inicio,finales);
             
             matConfusionCV(i,valor) = matConfusionCV(i,valor)+1;
             %disp(matConfusionCV);
             fprintf(fileMats,"- - - - - - - - - - - - - - - - - \n");
-            fprintf(fileMats,'%i %i %i %i %i\n',matConfusionCV.');
+            fprintf(fileMats,fmt,matConfusionCV.');
             fprintf(fileMats,"- - - - - - - - - - - - - - - - - \n");
             
         end
@@ -97,7 +103,7 @@ for i = 1: nclases
     
     %aqui agarra los 99 datos correspondientes a Cni
     puntos = randi([initCk,endCk-1],1,nrep-1);
-    fprintf(fileMats,"Puntos a probar para la clase %d\n",i);
+    %fprintf(fileMats,"Puntos a probar para la clase %d\n",i);
     %for de prueba con cada uno de los 100 puntos
     for j=1:nrep-1
         %fprintf("Estoy ptobando 99 puntos para clase %d\n",i);
@@ -115,11 +121,11 @@ end
 
 matsConfEndDistMinima = [matConfusionR matConfusionCV matConfusionHO];
 
-principalRes = zeros(5);
-principalCross = zeros(5);
-principalHO = zeros(5);
+principalRes = zeros(nclases);
+principalCross = zeros(nclases);
+principalHO = zeros(nclases);
 
-for i=1:5 
+for i=1:nclases 
     principalRes(i) = matConfusionR(i,i);
     principalCross(i) = matConfusionCV(i,i);
     principalHO(i) = matConfusionHO(i,i);
