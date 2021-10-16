@@ -6,7 +6,7 @@ distancias = [];
 %calculamos las medias y vamos añadiendo a una matriz contenedora de todas
 %las medias  para cada matriz de clase ckn
 for i=1:length(inicio)
-    media = mean(matclases(1:2,inicio(i):finales(i)),2);
+    media = mean(matclases(:,inicio(i):finales(i)),2);
     medias = [medias media];
 end
 
@@ -18,7 +18,7 @@ end
  vector = [x;y];
   
  for i=1:nclases 
-     distancias(i) = norm(vector- medias(1:2,i));
+     distancias(i) = norm(vector- medias(:,i));
  end
 
 

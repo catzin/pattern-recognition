@@ -3,7 +3,7 @@ function [mediasmat] = calcularMedias(matclases,inicio,finales)
 %las medias  para cada matriz de clase ckn
 mediasmat = [];
 for i=1:length(inicio)
-    media = mean(matclases(1:2,inicio(i):finales(i)),2);
+    media = mean(matclases(:,inicio(i):finales(i)),2);
     mediasmat = [mediasmat media];
 end
 
